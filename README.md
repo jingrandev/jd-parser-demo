@@ -138,7 +138,7 @@ Run all tests:
 make test
 ```
 
-### Code Style
+## Code Style
 
 ```bash
 make format
