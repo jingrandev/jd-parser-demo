@@ -4,6 +4,7 @@ from functools import lru_cache
 from typing import Any, Dict, List
 
 from fastapi import Depends
+from loguru import logger
 
 from conf import setting
 from libs.clients.llm.openai import OpenAIClient
@@ -45,6 +46,7 @@ class JDParserService:
         )
 
         if not result.ok:
+            logger.error("JD parsing LLM call failed: {content}", content=result.content)
             raise RuntimeError(f"JD parsing failed: {result.content}")
 
         try:
@@ -56,6 +58,7 @@ class JDParserService:
                 "required_skills": data.get("required_skills", []),
             }
         except json.JSONDecodeError as exc:
+            logger.error("Failed to parse LLM JSON response: {raw}", raw=result.content)
             raise RuntimeError("Failed to parse LLM JSON response") from exc
 
 
