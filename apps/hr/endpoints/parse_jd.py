@@ -1,5 +1,3 @@
-from typing import Any, Dict, List
-
 from fastapi import APIRouter, Depends
 from pydantic import BaseModel
 
@@ -16,8 +14,8 @@ class JDInput(BaseModel):
 class JDOutput(BaseModel):
     role_title: str
     mission: str
-    core_responsibilities: List[str]
-    required_skills: List[str]
+    core_responsibilities: list[str]
+    required_skills: list[str]
 
 
 @router.post("/parse_jd", response_model=JDOutput)

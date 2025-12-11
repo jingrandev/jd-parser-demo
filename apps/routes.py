@@ -7,3 +7,8 @@ router = APIRouter()
 
 router.include_router(hr_router)
 
+
+@router.get("/health")
+async def health_check():
+    return {"status": "ok"}
+
