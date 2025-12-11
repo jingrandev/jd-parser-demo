@@ -5,7 +5,7 @@ services:
     build: .
     container_name: jd-parser-api
     ports:
-      - "8000:8000"
+      - "9333:8000"
     env_file:
       - .env
     # If you prefer overriding CMD, you can uncomment command below
