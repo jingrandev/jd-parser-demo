@@ -12,11 +12,9 @@ from libs.clients.llm.protocol import LLMClient
 class JDParserService:
 
     def __init__(self, llm_client: LLMClient):
+        self.llm_client = llm_client
 
-        self._llm_client = llm_client
-
-    def parse(self, jd_text: str) -> Dict[str, Any]:
-
+    async def parse(self, jd_text: str) -> Dict[str, Any]:
         prompt = """
         # Role
         You are a helpful assistant that extracts structured information from job descriptions.
@@ -40,7 +38,7 @@ class JDParserService:
             {"role": "user", "content": jd_text},
         ]
 
-        result = self._llm_client.chat(
+        result = await self.llm_client.chat(
             model=setting.OPENAI_MODEL,
             messages=messages,
             temperature=0.2,

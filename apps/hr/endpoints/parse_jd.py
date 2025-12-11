@@ -25,7 +25,7 @@ async def parse_jd_endpoint(
     payload: JDInput,
     service: JDParserService = Depends(get_jd_parser_service),
 ) -> JDOutput:
-    data = service.parse(payload.text)
+    data = await service.parse(payload.text)
     return JDOutput(
         role_title=data.get("role_title", ""),
         mission=data.get("mission", ""),

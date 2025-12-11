@@ -1,6 +1,6 @@
 from typing import Any, Dict, List, Optional
 
-from openai import OpenAI
+from openai import AsyncOpenAI
 
 from conf import setting
 from .protocol import ChatResult, LLMClient
@@ -16,19 +16,19 @@ class OpenAIClient(LLMClient):
         if key is None:
             raise RuntimeError("OPENAI_API_KEY environment variable is not set and no api_key was provided")
 
-        self._client = OpenAI(
+        self._client = AsyncOpenAI(
             api_key=key,
             base_url=base_url or setting.OPENAI_BASE_URL,
         )
 
-    def chat(
+    async def chat(
         self,
         model: str,
         messages: List[Dict[str, Any]],
         temperature: float = 0.7,
     ) -> ChatResult:
         try:
-            response = self._client.chat.completions.create(
+            response = await self._client.chat.completions.create(
                 model=model,
                 messages=messages,
                 temperature=temperature,

@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import Any, Dict, List, Optional, Protocol
+from typing import Any, Awaitable, Dict, List, Optional, Protocol
 
 
 @dataclass
@@ -17,5 +17,5 @@ class LLMClient(Protocol):
         model: str,
         messages: List[Dict[str, Any]],
         temperature: float = 0.7,
-    ) -> ChatResult:
+    ) -> Awaitable[ChatResult]:
         ...
