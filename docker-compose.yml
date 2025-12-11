@@ -8,6 +8,8 @@ services:
       - "9333:8000"
     env_file:
       - .env
+    environment:
+      APP_ENV: deploy
     # If you prefer overriding CMD, you can uncomment command below
     # command: ["uvicorn", "entry:app", "--host", "0.0.0.0", "--port", "8000"]
     restart: unless-stopped

@@ -72,6 +72,30 @@ Health check:
 
 - `GET http://127.0.0.1:8000/api/v1/health`
 
+## Deploy with Docker Compose
+
+This project ships with a minimal `docker-compose.yml` for easy deployment.
+
+1. Make sure your `.env` is configured with the correct credentials (especially `OPENAI_API_KEY`).
+
+2. The compose file pins `APP_ENV` to `deploy`:
+
+   - See `docker-compose.yml`:
+     - `environment: APP_ENV=deploy`
+   - Other variables are still loaded from `.env` via `env_file`.
+
+3. Build and start the service:
+
+   ```bash
+   docker compose up -d
+   ```
+
+4. The API will be exposed on:
+
+   - `http://127.0.0.1:9333`
+   - Health: `GET http://127.0.0.1:9333/api/v1/health`
+   - Parse JD: `POST http://127.0.0.1:9333/api/v1/hr/parse_jd`
+
 ---
 
 ## Example API request
