@@ -3,6 +3,7 @@ from typing import Any, Dict, List, Optional
 from openai import AsyncOpenAI
 
 from conf import setting
+
 from .protocol import ChatResult, LLMClient
 
 
@@ -14,7 +15,9 @@ class OpenAIClient(LLMClient):
     ) -> None:
         key = api_key or setting.OPENAI_API_KEY
         if key is None:
-            raise RuntimeError("OPENAI_API_KEY environment variable is not set and no api_key was provided")
+            raise RuntimeError(
+                "OPENAI_API_KEY environment variable is not set and no api_key was provided"
+            )
 
         self._client = AsyncOpenAI(
             api_key=key,

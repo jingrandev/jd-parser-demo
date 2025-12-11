@@ -1,9 +1,8 @@
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 
-from conf import setting
 from apps.routes import router as apps_router
-
+from conf import setting
 
 app = FastAPI(title=setting.APP_TITLE, debug=setting.DEBUG)
 

@@ -1,4 +1,3 @@
-from typing import Optional
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -12,7 +11,7 @@ class AppSettings(BaseSettings):
     OPENAI_API_KEY: str
     OPENAI_BASE_URL: str
     OPENAI_MODEL: str
-    
+
     API_V1_PREFIX: str = "/api/v1"
 
     model_config = SettingsConfigDict(

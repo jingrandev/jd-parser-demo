@@ -17,5 +17,4 @@ class LLMClient(Protocol):
         model: str,
         messages: List[Dict[str, Any]],
         temperature: float = 0.7,
-    ) -> Awaitable[ChatResult]:
-        ...
+    ) -> Awaitable[ChatResult]: ...

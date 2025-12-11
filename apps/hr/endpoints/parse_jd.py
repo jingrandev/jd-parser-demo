@@ -3,7 +3,6 @@ from pydantic import BaseModel
 
 from apps.hr.services.jd_parser import JDParserService, get_jd_parser_service
 
-
 router = APIRouter()
 
 
@@ -30,4 +29,3 @@ async def parse_jd_endpoint(
         core_responsibilities=data.get("core_responsibilities", []),
         required_skills=data.get("required_skills", []),
     )
-

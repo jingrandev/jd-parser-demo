@@ -1,3 +1,4 @@
+# ruff: noqa: E501
 import json
 from functools import lru_cache
 from typing import Any, Dict, List
@@ -10,7 +11,6 @@ from libs.clients.llm.protocol import LLMClient
 
 
 class JDParserService:
-
     def __init__(self, llm_client: LLMClient):
         self.llm_client = llm_client
 
@@ -61,12 +61,10 @@ class JDParserService:
 
 @lru_cache
 def get_llm_client() -> LLMClient:
-
     return OpenAIClient()
 
 
 def get_jd_parser_service(
     llm_client: LLMClient = Depends(get_llm_client),
 ) -> JDParserService:
-
     return JDParserService(llm_client=llm_client)

@@ -6,7 +6,6 @@ from .deploy import DeploySettings
 from .local import LocalSettings
 from .test import TestSettings
 
-
 APP_ENV_VAR = "APP_ENV"
 
 

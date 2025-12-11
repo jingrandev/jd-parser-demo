@@ -1,4 +1,3 @@
-import json
 
 import pytest
 from fastapi.testclient import TestClient
@@ -62,4 +61,3 @@ def test_parse_jd_api_runtime_error_triggers_generic_handler():
     data = response.json()
     assert data["message"] == "Internal server error"
     assert data["error_type"] == "RuntimeError"
-
