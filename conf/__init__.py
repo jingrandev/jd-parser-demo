@@ -4,6 +4,7 @@ from functools import lru_cache
 from .base import AppSettings
 from .deploy import DeploySettings
 from .local import LocalSettings
+from .test import TestSettings
 
 
 APP_ENV_VAR = "APP_ENV"
@@ -15,6 +16,8 @@ def get_application_settings() -> AppSettings:
 
     if env == "deploy":
         settings_cls = DeploySettings
+    elif env == "test":
+        settings_cls = TestSettings
     else:
         settings_cls = LocalSettings
 
