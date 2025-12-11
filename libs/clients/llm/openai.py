@@ -1,8 +1,8 @@
-import os
 from typing import Any, Dict, List, Optional
 
 from openai import OpenAI
 
+from conf import setting
 from .protocol import ChatResult, LLMClient
 
 
@@ -12,13 +12,13 @@ class OpenAIClient(LLMClient):
         api_key: Optional[str] = None,
         base_url: Optional[str] = None,
     ) -> None:
-        key = api_key or os.environ.get("DEEPSEEK_API_KEY")
+        key = api_key or setting.OPENAI_API_KEY
         if key is None:
-            raise RuntimeError("DEEPSEEK_API_KEY environment variable is not set and no api_key was provided")
+            raise RuntimeError("OPENAI_API_KEY environment variable is not set and no api_key was provided")
 
         self._client = OpenAI(
             api_key=key,
-            base_url=base_url or "https://api.deepseek.com",
+            base_url=base_url or setting.OPENAI_BASE_URL,
         )
 
     def chat(
