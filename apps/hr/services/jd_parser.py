@@ -18,12 +18,12 @@ class JDParserService:
         prompt = """
         # Role
         You are a helpful assistant that extracts structured information from job descriptions.
-        
-        # Task 
+
+        # Task
         You are given a JD text input, return structured dict object with keys: role_title, mission, core_responsibilities, required_skills.
-        
+
         # Rules
-        - return the json string that exactly starts with { and ends with } 
+        - return the json string that exactly starts with { and ends with }
         - use language the as same as the input
         - mission is a short summary in the job description, not the original text
         - the item of core_responsibilities and required_skills should be the name of the skill/ability, keep it simple and concise

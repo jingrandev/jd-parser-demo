@@ -1,0 +1,69 @@
+exclude: '^docs/|/migrations/|devcontainer.json'
+default_stages: [pre-commit]
+
+default_language_version:
+  python: python3.13
+
+repos:
+  - repo: local
+    hooks: []
+      # If you later add `make cov`, you can enable this:
+      # - id: pytest-cov
+      #   name: Run tests with coverage
+      #   entry: make cov
+      #   language: system
+      #   pass_filenames: false
+      #   always_run: true
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-json
+      - id: check-toml
+      - id: check-yaml
+      - id: debug-statements
+      - id: check-builtin-literals
+      - id: check-case-conflict
+      - id: check-docstring-first
+      - id: detect-private-key
+
+  # Run the Ruff linter and formatter.
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.11.7
+    hooks:
+      # Linter
+      - id: ruff
+        args: [--fix, --exit-non-zero-on-fix]
+      # Formatter
+      - id: ruff-format
+
+  # Use uv to manage lock file and export requirements
+  - repo: https://github.com/astral-sh/uv-pre-commit
+    rev: 0.6.17
+    hooks:
+      # Update uv.lock file when pyproject.toml changes
+      - id: uv-lock
+      # Export a flat requirements file for external tools
+      - id: uv-export
+        name: Update requirements.txt
+        args:
+          [
+            --no-hashes,
+            --no-header,
+            --output-file,
+            requirements.txt,
+          ]
+
+  # Format pyproject.toml (optional but useful)
+  - repo: https://github.com/tox-dev/pyproject-fmt
+    rev: 'v2.5.1'
+    hooks:
+      - id: pyproject-fmt
+
+# sets up .pre-commit-ci.yaml to ensure pre-commit dependencies stay up to date
+ci:
+  autoupdate_schedule: weekly
+  skip: []
+  submodules: false

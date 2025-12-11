@@ -1,6 +1,6 @@
 PYTHON ?= python
 
-.PHONY: test lint format
+.PHONY: test lint format check
 
 test:
 	pytest .
@@ -10,3 +10,6 @@ lint:
 
 format:
 	ruff format .
+
+check:
+	pre-commit run --all-files
