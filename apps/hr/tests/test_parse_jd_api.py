@@ -60,3 +60,11 @@ def test_parse_jd_api_runtime_error_triggers_generic_handler():
     data = response.json()
     assert data["message"] == "Internal server error"
     assert data["error_type"] == "RuntimeError"
+
+
+def test_parse_jd_api_empty_text_validation_error():
+    payload = {"text": ""}
+
+    response = client.post("/api/v1/hr/parse_jd", json=payload)
+
+    assert response.status_code == 422

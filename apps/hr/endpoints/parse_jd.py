@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from apps.hr.services.jd_parser import JDParserService, get_jd_parser_service
 
@@ -7,7 +7,7 @@ router = APIRouter()
 
 
 class JDInput(BaseModel):
-    text: str
+    text: str = Field(min_length=1)
 
 
 class JDOutput(BaseModel):

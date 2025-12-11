@@ -1,0 +1,13 @@
+version: "3.9"
+
+services:
+  jd-parser-api:
+    build: .
+    container_name: jd-parser-api
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    # If you prefer overriding CMD, you can uncomment command below
+    # command: ["uvicorn", "entry:app", "--host", "0.0.0.0", "--port", "8000"]
+    restart: unless-stopped
